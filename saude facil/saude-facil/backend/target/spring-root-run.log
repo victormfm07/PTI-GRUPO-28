@@ -1,0 +1,60 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.saudeFacil:saude-facil >---------------------
+[INFO] Building Saúde Fácil 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.0:run (default-cli) > test-compile @ saude-facil >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ saude-facil ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ saude-facil ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ saude-facil ---
+[INFO] skip non existing resourceDirectory C:\Users\night\Downloads\saude facil\saude-facil\backend\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ saude-facil ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:3.2.0:run (default-cli) < test-compile @ saude-facil <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.0:run (default-cli) @ saude-facil ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+2026-05-17T15:33:59.836-03:00  INFO 7456 --- [saude-facil] [           main] com.saudeFacil.SaudeFacilApplication     : Starting SaudeFacilApplication using Java 17.0.19 with PID 7456 (C:\Users\night\Downloads\saude facil\saude-facil\backend\target\classes started by night in C:\Users\night\Downloads\saude facil\saude-facil\backend)
+2026-05-17T15:33:59.836-03:00  INFO 7456 --- [saude-facil] [           main] com.saudeFacil.SaudeFacilApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-05-17T15:34:00.206-03:00  INFO 7456 --- [saude-facil] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-17T15:34:00.247-03:00  INFO 7456 --- [saude-facil] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 32 ms. Found 3 JPA repository interfaces.
+2026-05-17T15:34:00.595-03:00  INFO 7456 --- [saude-facil] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-05-17T15:34:00.603-03:00  INFO 7456 --- [saude-facil] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-17T15:34:00.603-03:00  INFO 7456 --- [saude-facil] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2026-05-17T15:34:00.648-03:00  INFO 7456 --- [saude-facil] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-17T15:34:00.648-03:00  INFO 7456 --- [saude-facil] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 774 ms
+2026-05-17T15:34:00.685-03:00  INFO 7456 --- [saude-facil] [           main] com.zaxxer.hikari.HikariDataSource       : SaudeFacil-SQLite-Pool - Starting...
+2026-05-17T15:34:00.794-03:00  INFO 7456 --- [saude-facil] [           main] com.zaxxer.hikari.pool.HikariPool        : SaudeFacil-SQLite-Pool - Added connection org.sqlite.jdbc4.JDBC4Connection@5377414a
+2026-05-17T15:34:00.800-03:00  INFO 7456 --- [saude-facil] [           main] com.zaxxer.hikari.HikariDataSource       : SaudeFacil-SQLite-Pool - Start completed.
+2026-05-17T15:34:00.854-03:00  INFO 7456 --- [saude-facil] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-17T15:34:00.890-03:00  INFO 7456 --- [saude-facil] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
+2026-05-17T15:34:00.993-03:00  INFO 7456 --- [saude-facil] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-05-17T15:34:01.139-03:00  INFO 7456 --- [saude-facil] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-17T15:34:01.709-03:00  INFO 7456 --- [saude-facil] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-17T15:34:01.733-03:00  INFO 7456 --- [saude-facil] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-17T15:34:01.964-03:00  WARN 7456 --- [saude-facil] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-17T15:34:02.158-03:00  INFO 7456 --- [saude-facil] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-05-17T15:34:02.164-03:00  INFO 7456 --- [saude-facil] [           main] com.saudeFacil.SaudeFacilApplication     : Started SaudeFacilApplication in 2.571 seconds (process running for 2.797)
+2026-05-17T15:34:02.473-03:00  INFO 7456 --- [saude-facil] [nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-17T15:34:02.473-03:00  INFO 7456 --- [saude-facil] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-17T15:34:02.475-03:00  INFO 7456 --- [saude-facil] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
