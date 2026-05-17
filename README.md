@@ -110,6 +110,8 @@ Busca por Unidades
    ↓
 Confirmação
 
+---
+
 🎯 Público-Alvo
 Usuários do sistema público de saúde
 Idosos
