@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saúde Fácil – Entrar</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+
+    <div class="auth-container">
+        <div class="auth-logo">
+            <div class="logo-icon">🏥</div>
+            <h1>Saúde Fácil</h1>
+            <p>Acesso à saúde pública simplificado</p>
+        </div>
+
+        <div class="auth-card">
+            <h2>Entrar na sua conta</h2>
+
+            <div id="msg-erro" class="alert alert-error" style="display:none;"></div>
+
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" placeholder="seu@email.com">
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" placeholder="••••••">
+            </div>
+
+            <button class="btn btn-primary btn-full" onclick="fazerLogin()">Entrar</button>
+            <div class="auth-divider">ou</div>
+            <button class="btn btn-outline btn-full" onclick="window.location.href='cadastro.html'">
+                Criar conta gratuita
+            </button>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        document.addEventListener('keydown', e => { if (e.key === 'Enter') fazerLogin(); });
+
+        async function fazerLogin() {
+            const email = document.getElementById('email').value.trim();
+            const senha = document.getElementById('senha').value.trim();
+            const erro  = document.getElementById('msg-erro');
+
+            if (!email || !senha) {
+                return mostrarErro(erro, 'Preencha e-mail e senha.');
+            }
+            try {
+                const usuario = await Api.login(email, senha);
+                sessionStorage.setItem('usuario', JSON.stringify(usuario));
+                window.location.href = 'home.html';
+            } catch {
+                mostrarErro(erro, 'E-mail ou senha inválidos.');
+            }
+        }
+
+        function mostrarErro(elemento, texto) {
+            elemento.textContent = texto;
+            elemento.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

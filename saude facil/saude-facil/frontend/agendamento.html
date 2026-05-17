@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saúde Fácil – Agendar Consulta</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="header-logo">🏥 <span>Saúde Fácil</span></div>
+            <div class="header-user">
+                <a href="home.html" class="btn-voltar">← Voltar</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Passo 1: Busca de unidades -->
+        <div id="etapa-1" class="etapa ativa">
+            <div class="etapa-header">
+                <div class="etapa-badge">Passo 1 de 3</div>
+                <h2>Buscar unidade de saúde</h2>
+                <p>Encontre uma unidade próxima a você</p>
+            </div>
+            <div class="filtros-card">
+                <div class="form-group">
+                    <label>Tipo de atendimento</label>
+                    <select id="tipo-unidade">
+                        <option value="">Todos os tipos</option>
+                        <option value="UBS">UBS – Unidade Básica de Saúde</option>
+                        <option value="UPA">UPA – Unidade de Pronto Atendimento</option>
+                        <option value="Hospital">Hospital</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="buscarUnidades()">Buscar unidades</button>
+            </div>
+            <div id="lista-unidades" class="lista-cards"></div>
+        </div>
+
+        <!-- Passo 2: Data e horário -->
+        <div id="etapa-2" class="etapa">
+            <div class="etapa-header">
+                <div class="etapa-badge">Passo 2 de 3</div>
+                <h2>Escolher data e horário</h2>
+                <p id="nome-unidade-selecionada" class="destaque-verde"></p>
+            </div>
+            <div class="form-card">
+                <div class="form-group">
+                    <label>Especialidade</label>
+                    <select id="especialidade">
+                        <option>Clínico Geral</option>
+                        <option>Pediatria</option>
+                        <option>Ginecologia</option>
+                        <option>Cardiologia</option>
+                        <option>Ortopedia</option>
+                        <option>Dermatologia</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Data da consulta</label>
+                    <input type="date" id="data-consulta">
+                </div>
+                <div class="form-group">
+                    <label>Horário disponível</label>
+                    <div class="horarios-grid">
+                        <button class="horario-btn" onclick="selecionarHorario(this, '08:00')">08:00</button>
+                        <button class="horario-btn" onclick="selecionarHorario(this, '09:00')">09:00</button>
+                        <button class="horario-btn" onclick="selecionarHorario(this, '10:00')">10:00</button>
+                        <button class="horario-btn" onclick="selecionarHorario(this, '11:00')">11:00</button>
+                        <button class="horario-btn" onclick="selecionarHorario(this, '14:00')">14:00</button>
+                        <button class="horario-btn" onclick="selecionarHorario(this, '15:00')">15:00</button>
+                        <button class="horario-btn" onclick="selecionarHorario(this, '16:00')">16:00</button>
+                        <button class="horario-btn" onclick="selecionarHorario(this, '17:00')">17:00</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Observações (opcional)</label>
+                    <textarea id="observacoes" placeholder="Descreva brevemente o motivo da consulta..." rows="3"></textarea>
+                </div>
+                <div class="btn-row">
+                    <button class="btn btn-outline" onclick="irEtapa(1)">← Voltar</button>
+                    <button class="btn btn-primary" onclick="irEtapa(3)">Continuar →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Passo 3: Confirmação -->
+        <div id="etapa-3" class="etapa">
+            <div class="etapa-header">
+                <div class="etapa-badge">Passo 3 de 3</div>
+                <h2>Confirmar agendamento</h2>
+                <p>Verifique os dados antes de confirmar</p>
+            </div>
+            <div class="confirmacao-card" id="resumo"></div>
+            <div id="msg-confirmacao" class="alert alert-success" style="display:none;">
+                ✅ Consulta agendada com sucesso! Você receberá um lembrete.
+            </div>
+            <div class="btn-row" id="botoes-etapa3">
+                <button class="btn btn-outline" onclick="irEtapa(2)">← Voltar</button>
+                <button class="btn btn-primary" onclick="confirmarAgendamento()">✅ Confirmar Agendamento</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="js/api.js"></script>
+    <script>
+        const usuario = JSON.parse(sessionStorage.getItem('usuario'));
+        if (!usuario) window.location.href = 'index.html';
+
+        let unidadeId = null;
+        let horarioSelecionado = null;
+
+        // Define a data mínima como hoje
+        const dataInput = document.getElementById('data-consulta');
+        const hoje = new Date().toISOString().split('T')[0];
+        dataInput.min = hoje;
+        dataInput.value = hoje;
+
+        function irEtapa(n) {
+            document.querySelectorAll('.etapa').forEach(e => e.classList.remove('ativa'));
+            document.getElementById('etapa-' + n).classList.add('ativa');
+            if (n === 3) montarResumo();
+        }
+
+        function selecionarHorario(btn, horario) {
+            document.querySelectorAll('.horario-btn').forEach(b => b.classList.remove('ativo'));
+            btn.classList.add('ativo');
+            horarioSelecionado = horario;
+        }
+
+        function selecionarUnidade(id, nome) {
+            unidadeId = id;
+            document.getElementById('nome-unidade-selecionada').textContent = '📍 ' + nome;
+            irEtapa(2);
+        }
+
+        async function buscarUnidades() {
+            const tipo = document.getElementById('tipo-unidade').value;
+            const unidades = tipo
+                ? await Api.buscarUnidadesPorTipo(tipo)
+                : await Api.listarUnidades();
+
+            const lista = document.getElementById('lista-unidades');
+            if (!unidades.length) {
+                lista.innerHTML = '<p class="sem-resultado">Nenhuma unidade encontrada.</p>';
+                return;
+            }
+            lista.innerHTML = unidades.map(u => `
+                <div class="unidade-card" onclick="selecionarUnidade(${u.id}, '${u.nome}')">
+                    <div class="unidade-tipo-badge">${u.tipo}</div>
+                    <h3>${u.nome}</h3>
+                    <p>📍 ${u.endereco}, ${u.bairro}</p>
+                    <p>🕐 ${u.horarioFuncionamento || 'Horário não informado'}</p>
+                    ${u.telefone ? `<p>📞 ${u.telefone}</p>` : ''}
+                    <button class="btn btn-primary btn-sm">Agendar aqui →</button>
+                </div>
+            `).join('');
+        }
+
+        function montarResumo() {
+            const data = document.getElementById('data-consulta').value;
+            const dataFmt = data ? new Date(data + 'T00:00:00').toLocaleDateString('pt-BR') : '—';
+            document.getElementById('resumo').innerHTML = `
+                <div class="resumo-linha"><span>Paciente:</span>     <strong>${usuario.nome}</strong></div>
+                <div class="resumo-linha"><span>Unidade:</span>      <strong>${document.getElementById('nome-unidade-selecionada').textContent}</strong></div>
+                <div class="resumo-linha"><span>Especialidade:</span><strong>${document.getElementById('especialidade').value}</strong></div>
+                <div class="resumo-linha"><span>Data:</span>         <strong>${dataFmt}</strong></div>
+                <div class="resumo-linha"><span>Horário:</span>      <strong>${horarioSelecionado || '—'}</strong></div>
+                ${document.getElementById('observacoes').value
+                    ? `<div class="resumo-linha"><span>Observações:</span><strong>${document.getElementById('observacoes').value}</strong></div>`
+                    : ''}
+            `;
+        }
+
+        async function confirmarAgendamento() {
+            if (!horarioSelecionado) return alert('Por favor, selecione um horário.');
+            try {
+                await Api.criarAgendamento(usuario.id, unidadeId, {
+                    dataConsulta:     document.getElementById('data-consulta').value,
+                    horarioConsulta:  horarioSelecionado,
+                    especialidade:    document.getElementById('especialidade').value,
+                    observacoes:      document.getElementById('observacoes').value
+                });
+                document.getElementById('msg-confirmacao').style.display = 'block';
+                document.getElementById('botoes-etapa3').style.display   = 'none';
+                setTimeout(() => window.location.href = 'historico.html', 3000);
+            } catch {
+                alert('Erro ao agendar consulta. Tente novamente.');
+            }
+        }
+
+        buscarUnidades();
+    </script>
+</body>
+</html>

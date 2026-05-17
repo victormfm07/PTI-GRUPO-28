@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saúde Fácil – Cadastro</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+
+    <div class="auth-container">
+        <div class="auth-logo">
+            <div class="logo-icon">🏥</div>
+            <h1>Saúde Fácil</h1>
+            <p>Crie sua conta gratuitamente</p>
+        </div>
+
+        <div class="auth-card">
+            <h2>Criar conta</h2>
+
+            <div id="msg-sucesso" class="alert alert-success" style="display:none;"></div>
+            <div id="msg-erro"    class="alert alert-error"   style="display:none;"></div>
+
+            <div class="form-group">
+                <label>Nome completo</label>
+                <input type="text"     id="nome"     placeholder="Maria Aparecida Silva">
+            </div>
+            <div class="form-group">
+                <label>CPF</label>
+                <input type="text"     id="cpf"      placeholder="000.000.000-00" maxlength="14">
+            </div>
+            <div class="form-group">
+                <label>E-mail</label>
+                <input type="email"    id="email"    placeholder="seu@email.com">
+            </div>
+            <div class="form-group">
+                <label>Telefone</label>
+                <input type="text"     id="telefone" placeholder="(11) 99999-9999">
+            </div>
+            <div class="form-group">
+                <label>Senha</label>
+                <input type="password" id="senha"    placeholder="Mínimo 6 caracteres">
+            </div>
+
+            <button class="btn btn-primary btn-full" onclick="cadastrar()">Criar conta</button>
+            <div class="auth-divider">ou</div>
+            <button class="btn btn-outline btn-full" onclick="window.location.href='index.html'">
+                Já tenho conta – Entrar
+            </button>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        async function cadastrar() {
+            const nome     = document.getElementById('nome').value.trim();
+            const cpf      = document.getElementById('cpf').value.trim();
+            const email    = document.getElementById('email').value.trim();
+            const telefone = document.getElementById('telefone').value.trim();
+            const senha    = document.getElementById('senha').value.trim();
+            const erro     = document.getElementById('msg-erro');
+            const sucesso  = document.getElementById('msg-sucesso');
+
+            if (!nome || !cpf || !email || !senha) {
+                return exibir(erro, 'Preencha todos os campos obrigatórios.');
+            }
+            if (senha.length < 6) {
+                return exibir(erro, 'A senha deve ter pelo menos 6 caracteres.');
+            }
+
+            try {
+                await Api.cadastrarUsuario({ nome, cpf, email, telefone, senha });
+                erro.style.display = 'none';
+                exibir(sucesso, 'Conta criada com sucesso! Redirecionando...');
+                setTimeout(() => window.location.href = 'index.html', 2000);
+            } catch {
+                exibir(erro, 'Erro ao criar conta. Verifique os dados e tente novamente.');
+            }
+        }
+
+        function exibir(elemento, texto) {
+            elemento.textContent = texto;
+            elemento.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

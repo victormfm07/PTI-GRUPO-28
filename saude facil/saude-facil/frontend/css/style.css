@@ -1,0 +1,326 @@
+/* ============================================================
+   SAÚDE FÁCIL – Estilos Globais
+   Paleta: Verde saúde (#1a7a4a), branco, cinza claro
+   ============================================================ */
+
+:root {
+    --verde:       #1a7a4a;
+    --verde-light: #e8f5ee;
+    --verde-hover: #155e39;
+    --cinza:       #f5f6f8;
+    --cinza-borda: #dde1e7;
+    --texto:       #1e2836;
+    --texto-muted: #6b7280;
+    --branco:      #ffffff;
+    --erro:        #dc2626;
+    --erro-bg:     #fef2f2;
+    --sucesso:     #16a34a;
+    --sucesso-bg:  #f0fdf4;
+    --radius:      12px;
+    --shadow:      0 2px 12px rgba(0,0,0,0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--cinza);
+    color: var(--texto);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* ── HEADER ── */
+.header {
+    background: var(--verde);
+    color: white;
+    padding: 0 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+.header-logo { font-size: 1.2rem; font-weight: 700; }
+.header-logo span { margin-left: 6px; }
+.header-user { display: flex; align-items: center; gap: 1rem; font-size: 0.9rem; }
+.btn-voltar {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+.btn-voltar:hover { opacity: 1; }
+.btn-sair {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+.btn-sair:hover { background: rgba(255,255,255,0.3); }
+
+/* ── CONTAINER ── */
+.container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+/* ── AUTH ── */
+.auth-page { background: var(--verde); min-height: 100vh; display: flex; align-items: center; }
+.auth-container { width: 100%; max-width: 420px; margin: 0 auto; padding: 1.5rem; }
+.auth-logo { text-align: center; color: white; margin-bottom: 1.5rem; }
+.auth-logo h1 { font-size: 2rem; margin: 0.5rem 0 0.25rem; }
+.auth-logo p { opacity: 0.85; }
+.logo-icon { font-size: 3rem; }
+.auth-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+.auth-card h2 { margin-bottom: 1.5rem; font-size: 1.2rem; }
+.auth-divider {
+    text-align: center;
+    color: var(--texto-muted);
+    margin: 1rem 0;
+    font-size: 0.85rem;
+}
+
+/* ── FORMULÁRIOS ── */
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.9rem; }
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color .2s;
+    background: white;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--verde);
+}
+.form-row { display: flex; gap: 1rem; }
+.form-row .form-group { flex: 1; }
+
+/* ── BOTÕES ── */
+.btn {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all .2s;
+    text-decoration: none;
+    text-align: center;
+}
+.btn-primary { background: var(--verde); color: white; }
+.btn-primary:hover { background: var(--verde-hover); }
+.btn-outline { background: white; color: var(--verde); border-color: var(--verde); }
+.btn-outline:hover { background: var(--verde-light); }
+.btn-full { width: 100%; display: block; }
+.btn-sm { padding: 6px 14px; font-size: 0.85rem; margin-top: 0.75rem; }
+.btn-row { display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1.5rem; }
+
+/* ── ALERTAS ── */
+.alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+.alert-error { background: var(--erro-bg); color: var(--erro); border: 1px solid #fca5a5; }
+.alert-success { background: var(--sucesso-bg); color: var(--sucesso); border: 1px solid #86efac; }
+
+/* ── HOME ── */
+.hero { margin-bottom: 1.5rem; }
+.hero h2 { font-size: 1.5rem; }
+.hero p { color: var(--texto-muted); }
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.menu-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-decoration: none;
+    color: var(--texto);
+    box-shadow: var(--shadow);
+    transition: transform .2s, box-shadow .2s;
+    display: block;
+}
+.menu-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+.menu-card-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+.menu-card h3 { font-size: 1rem; margin-bottom: 0.25rem; }
+.menu-card p { font-size: 0.85rem; color: var(--texto-muted); }
+
+.info-banner {
+    background: var(--verde-light);
+    border: 1px solid #a7d3b9;
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--verde-hover);
+}
+.info-banner-icon { font-size: 1.2rem; }
+
+/* ── ETAPAS ── */
+.etapa { display: none; }
+.etapa.ativa { display: block; }
+
+.etapa-header { margin-bottom: 1.5rem; }
+.etapa-header h2 { font-size: 1.3rem; margin: 0.5rem 0 0.25rem; }
+.etapa-header p { color: var(--texto-muted); }
+.etapa-badge {
+    display: inline-block;
+    background: var(--verde);
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 0.5rem;
+}
+.destaque-verde { color: var(--verde); font-weight: 600; }
+
+/* ── FILTROS E CARDS ── */
+.filtros-card, .form-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+}
+.lista-cards { display: flex; flex-direction: column; gap: 1rem; }
+
+.unidade-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: border-color .2s;
+    border: 2px solid transparent;
+}
+.unidade-card:hover { border-color: var(--verde); }
+.unidade-card h3 { font-size: 1rem; margin: 0.5rem 0 0.25rem; }
+.unidade-card p { font-size: 0.88rem; color: var(--texto-muted); margin-bottom: 2px; }
+.unidade-tipo-badge {
+    display: inline-block;
+    background: var(--verde-light);
+    color: var(--verde);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 20px;
+}
+
+/* ── HORÁRIOS ── */
+.horarios-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+.horario-btn {
+    padding: 10px;
+    border: 2px solid var(--cinza-borda);
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all .2s;
+}
+.horario-btn:hover { border-color: var(--verde); color: var(--verde); }
+.horario-btn.ativo { background: var(--verde); color: white; border-color: var(--verde); }
+
+/* ── CONFIRMAÇÃO ── */
+.confirmacao-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+}
+.resumo-linha {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--cinza-borda);
+    font-size: 0.95rem;
+}
+.resumo-linha:last-child { border-bottom: none; }
+.resumo-linha span { color: var(--texto-muted); }
+
+/* ── AGENDAMENTOS ── */
+.agendamento-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    box-shadow: var(--shadow);
+}
+.agendamento-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+.agendamento-top h3 { font-size: 1rem; margin-bottom: 2px; }
+.agendamento-top p { font-size: 0.85rem; color: var(--texto-muted); }
+.agendamento-info {
+    display: flex;
+    gap: 1.25rem;
+    font-size: 0.88rem;
+    color: var(--texto-muted);
+    flex-wrap: wrap;
+}
+.status-badge {
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+.status-agendado   { background: #dbeafe; color: #1d4ed8; }
+.status-confirmado { background: var(--verde-light); color: var(--verde); }
+.status-cancelado  { background: var(--erro-bg); color: var(--erro); }
+.status-realizado  { background: #f3f4f6; color: #374151; }
+
+/* ── UTILITÁRIOS ── */
+.carregando, .sem-resultado { color: var(--texto-muted); text-align: center; padding: 2rem; }
+.vazio-card { text-align: center; padding: 3rem 1rem; color: var(--texto-muted); }
+.vazio-icon { font-size: 3rem; margin-bottom: 0.75rem; }
+
+@media (max-width: 500px) {
+    .horarios-grid { grid-template-columns: repeat(2, 1fr); }
+    .form-row { flex-direction: column; }
+    .btn-row { flex-direction: column; }
+    .agendamento-top { flex-direction: column; gap: 0.5rem; }
+}

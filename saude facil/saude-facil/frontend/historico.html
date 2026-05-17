@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saúde Fácil – Meus Agendamentos</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="header-logo">🏥 <span>Saúde Fácil</span></div>
+            <div class="header-user">
+                <a href="home.html" class="btn-voltar">← Voltar</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="etapa-header">
+            <h2>📋 Meus Agendamentos</h2>
+            <p>Consultas marcadas e histórico de atendimentos</p>
+        </div>
+
+        <div id="lista-agendamentos">
+            <p class="carregando">Carregando seus agendamentos...</p>
+        </div>
+
+        <div style="text-align:center; margin-top: 2rem;">
+            <a href="agendamento.html" class="btn btn-primary">+ Novo Agendamento</a>
+        </div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script>
+        const usuario = JSON.parse(sessionStorage.getItem('usuario'));
+        if (!usuario) window.location.href = 'index.html';
+
+        const STATUS = {
+            AGENDADO:   { texto: 'Agendado',   cor: 'status-agendado' },
+            CONFIRMADO: { texto: 'Confirmado',  cor: 'status-confirmado' },
+            CANCELADO:  { texto: 'Cancelado',   cor: 'status-cancelado' },
+            REALIZADO:  { texto: 'Realizado',   cor: 'status-realizado' }
+        };
+
+        async function carregarAgendamentos() {
+            const lista = document.getElementById('lista-agendamentos');
+            try {
+                const agendamentos = await Api.listarAgendamentosUsuario(usuario.id);
+
+                if (!agendamentos.length) {
+                    lista.innerHTML = `
+                        <div class="vazio-card">
+                            <div class="vazio-icon">📅</div>
+                            <p>Você ainda não tem consultas agendadas.</p>
+                        </div>`;
+                    return;
+                }
+
+                lista.innerHTML = agendamentos.map(a => {
+                    const status   = STATUS[a.status] || { texto: a.status, cor: '' };
+                    const dataFmt  = new Date(a.dataConsulta + 'T00:00:00').toLocaleDateString('pt-BR');
+                    return `
+                        <div class="agendamento-card">
+                            <div class="agendamento-top">
+                                <div>
+                                    <h3>${a.unidade?.nome || 'Unidade não informada'}</h3>
+                                    <p>📍 ${a.unidade?.endereco || ''}</p>
+                                </div>
+                                <span class="status-badge ${status.cor}">${status.texto}</span>
+                            </div>
+                            <div class="agendamento-info">
+                                <span>🗓️ ${dataFmt}</span>
+                                <span>🕐 ${a.horarioConsulta}</span>
+                                <span>🩺 ${a.especialidade || 'Geral'}</span>
+                            </div>
+                            ${a.status === 'AGENDADO'
+                                ? `<button class="btn btn-outline btn-sm btn-cancelar" onclick="cancelar(${a.id})">Cancelar consulta</button>`
+                                : ''}
+                        </div>`;
+                }).join('');
+
+            } catch {
+                lista.innerHTML = '<p class="sem-resultado">Erro ao carregar agendamentos.</p>';
+            }
+        }
+
+        async function cancelar(id) {
+            if (!confirm('Tem certeza que deseja cancelar esta consulta?')) return;
+            try {
+                await Api.cancelarAgendamento(id);
+                carregarAgendamentos();
+            } catch {
+                alert('Erro ao cancelar. Tente novamente.');
+            }
+        }
+
+        carregarAgendamentos();
+    </script>
+</body>
+</html>

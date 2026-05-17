@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saúde Fácil – Unidades</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="header-logo">🏥 <span>Saúde Fácil</span></div>
+            <div class="header-user">
+                <a href="home.html" class="btn-voltar">← Voltar</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="etapa-header">
+            <h2>🔍 Buscar Unidades de Saúde</h2>
+            <p>Encontre postos, UBSs, UPAs e hospitais</p>
+        </div>
+
+        <div class="filtros-card">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Tipo</label>
+                    <select id="filtro-tipo">
+                        <option value="">Todos</option>
+                        <option value="UBS">UBS</option>
+                        <option value="UPA">UPA</option>
+                        <option value="Hospital">Hospital</option>
+                    </select>
+                </div>
+                <div class="form-group" style="flex:2">
+                    <label>Cidade</label>
+                    <input type="text" id="filtro-cidade" placeholder="Ex: São Paulo">
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="buscar()">Buscar</button>
+        </div>
+
+        <div id="lista-unidades" class="lista-cards"></div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script>
+        const usuario = JSON.parse(sessionStorage.getItem('usuario'));
+        if (!usuario) window.location.href = 'index.html';
+
+        async function buscar() {
+            const tipo   = document.getElementById('filtro-tipo').value;
+            const cidade = document.getElementById('filtro-cidade').value.trim();
+            const lista  = document.getElementById('lista-unidades');
+
+            lista.innerHTML = '<p class="carregando">Buscando...</p>';
+
+            const unidades = cidade
+                ? await Api.buscarUnidadesPorCidade(cidade)
+                : tipo
+                    ? await Api.buscarUnidadesPorTipo(tipo)
+                    : await Api.listarUnidades();
+
+            if (!unidades.length) {
+                lista.innerHTML = '<p class="sem-resultado">Nenhuma unidade encontrada.</p>';
+                return;
+            }
+
+            lista.innerHTML = unidades.map(u => `
+                <div class="unidade-card">
+                    <div class="unidade-tipo-badge">${u.tipo}</div>
+                    <h3>${u.nome}</h3>
+                    <p>📍 ${u.endereco}, ${u.bairro} – ${u.cidade}</p>
+                    <p>🕐 ${u.horarioFuncionamento || 'Horário não informado'}</p>
+                    ${u.telefone ? `<p>📞 ${u.telefone}</p>` : ''}
+                    <a href="agendamento.html" class="btn btn-primary btn-sm">Agendar consulta →</a>
+                </div>
+            `).join('');
+        }
+
+        buscar();
+    </script>
+</body>
+</html>

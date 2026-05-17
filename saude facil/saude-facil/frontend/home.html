@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saúde Fácil – Início</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="header-logo">🏥 <span>Saúde Fácil</span></div>
+            <div class="header-user">
+                <span id="nome-usuario"></span>
+                <button class="btn-sair" onclick="sair()">Sair</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h2>Olá, <span id="primeiro-nome">usuário</span>! 👋</h2>
+            <p>O que você precisa hoje?</p>
+        </section>
+
+        <section class="menu-grid">
+            <a href="agendamento.html" class="menu-card">
+                <div class="menu-card-icon">📅</div>
+                <h3>Agendar Consulta</h3>
+                <p>Encontre unidades disponíveis e marque sua consulta</p>
+            </a>
+            <a href="unidades.html" class="menu-card">
+                <div class="menu-card-icon">🔍</div>
+                <h3>Buscar Unidades</h3>
+                <p>Localize postos, UBSs, UPAs e hospitais</p>
+            </a>
+            <a href="historico.html" class="menu-card">
+                <div class="menu-card-icon">📋</div>
+                <h3>Meus Agendamentos</h3>
+                <p>Veja e gerencie suas consultas marcadas</p>
+            </a>
+        </section>
+
+        <section class="info-banner">
+            <div class="info-banner-icon">💡</div>
+            <div><strong>Dica:</strong> Em breve você poderá cadastrar dependentes e agendar para familiares.</div>
+        </section>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script>
+        const usuario = JSON.parse(sessionStorage.getItem('usuario'));
+        if (!usuario) window.location.href = 'index.html';
+
+        document.getElementById('nome-usuario').textContent  = usuario.nome;
+        document.getElementById('primeiro-nome').textContent = usuario.nome.split(' ')[0];
+
+        function sair() {
+            sessionStorage.clear();
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
