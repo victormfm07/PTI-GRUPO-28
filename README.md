@@ -109,7 +109,7 @@ Agendamento
 Busca por Unidades
    ↓
 Confirmação
-
+```
 ---
 
 # 🎯 Público-Alvo
@@ -168,7 +168,5 @@ Confirmação
 > Mais acesso. Mais organização. Mais cuidado humano.  
 >
 > Porque saúde pública também merece experiência moderna.
-
----
 
 ---
