@@ -1,33 +1,33 @@
-USE saudefacil;
+-- SQLite3 Schema para Saúde Fácil
 
 CREATE TABLE IF NOT EXISTS usuarios (
-    id       BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nome     VARCHAR(150) NOT NULL,
-    cpf      VARCHAR(14)  NOT NULL UNIQUE,
-    email    VARCHAR(150) NOT NULL UNIQUE,
-    senha    VARCHAR(255) NOT NULL,
-    telefone VARCHAR(20)
+    id       INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome     TEXT NOT NULL,
+    cpf      TEXT NOT NULL UNIQUE,
+    email    TEXT NOT NULL UNIQUE,
+    senha    TEXT NOT NULL,
+    telefone TEXT
 );
 
 CREATE TABLE IF NOT EXISTS unidades_saude (
-    id                    BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nome                  VARCHAR(200) NOT NULL,
-    endereco              VARCHAR(250) NOT NULL,
-    bairro                VARCHAR(100) NOT NULL,
-    cidade                VARCHAR(100) NOT NULL,
-    telefone              VARCHAR(20),
-    tipo                  VARCHAR(20)  NOT NULL,
-    horario_funcionamento VARCHAR(100)
+    id                    INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome                  TEXT NOT NULL,
+    endereco              TEXT NOT NULL,
+    bairro                TEXT NOT NULL,
+    cidade                TEXT NOT NULL,
+    telefone              TEXT,
+    tipo                  TEXT NOT NULL,
+    horario_funcionamento TEXT
 );
 
 CREATE TABLE IF NOT EXISTS agendamentos (
-    id               BIGINT AUTO_INCREMENT PRIMARY KEY,
-    usuario_id       BIGINT NOT NULL,
-    unidade_id       BIGINT NOT NULL,
-    data_consulta    DATE   NOT NULL,
-    horario_consulta TIME   NOT NULL,
-    especialidade    VARCHAR(100),
-    status           VARCHAR(20) NOT NULL DEFAULT 'AGENDADO',
+    id               INTEGER PRIMARY KEY AUTOINCREMENT,
+    usuario_id       INTEGER NOT NULL,
+    unidade_id       INTEGER NOT NULL,
+    data_consulta    TEXT NOT NULL,
+    horario_consulta TEXT NOT NULL,
+    especialidade    TEXT,
+    status           TEXT NOT NULL DEFAULT 'AGENDADO',
     observacoes      TEXT,
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
     FOREIGN KEY (unidade_id) REFERENCES unidades_saude(id)
