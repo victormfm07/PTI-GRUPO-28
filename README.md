@@ -69,7 +69,7 @@ Acesso via dispositivos móveis e interface web.
 
 # 🛠 Tecnologias Utilizadas
 
-- Mobile App - Java
+- Mobile App - Java, JavaScript, Python, CSS, HTML
 - Interface Web
 - Banco de Dados - SQL
 - APIs de localização
@@ -111,7 +111,7 @@ Busca por Unidades
 Confirmação
 
 ---
-
+##
 🎯 Público-Alvo
 Usuários do sistema público de saúde
 Idosos
