@@ -69,9 +69,9 @@ Acesso via dispositivos móveis e interface web.
 
 # 🛠 Tecnologias Utilizadas
 
-- Mobile App
+- Mobile App - Java
 - Interface Web
-- Banco de Dados
+- Banco de Dados - SQL
 - APIs de localização
 - Sistema de notificações
 
