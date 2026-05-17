@@ -2,7 +2,7 @@
 
 O **Saúde Fácil** é uma aplicação digital desenvolvida para facilitar o acesso da população aos serviços de saúde pública. A plataforma centraliza informações, agendamentos e consultas em um único ambiente, oferecendo praticidade tanto para cidadãos quanto para familiares responsáveis pelo acompanhamento de pacientes.
 
-O projeto foi desenvolvido no contexto do Projeto Integrador do curso de Tecnologia em Análise e Desenvolvimento de Sistemas do :contentReference[oaicite:0]{index=0}.
+O projeto foi desenvolvido no contexto do Projeto Integrador do curso de Tecnologia em Análise e Desenvolvimento de Sistemas do Senac.
 
 ---
 
@@ -111,42 +111,64 @@ Busca por Unidades
 Confirmação
 
 ---
-##
-🎯 Público-Alvo
-Usuários do sistema público de saúde
-Idosos
-Pessoas com dificuldade de locomoção
-Responsáveis por familiares
-Pessoas que desejam praticidade no acesso à saúde pública
-📚 Stakeholders
-Pacientes e cidadãos
-Profissionais da saúde
-Hospitais e unidades públicas
-Secretarias de saúde
-Equipe de desenvolvimento
-💡 Diferenciais
-Centralização das informações em um único aplicativo
-Interface simplificada e acessível
-Redução de filas presenciais
-Gestão de dependentes
-Facilidade de acesso aos serviços públicos
-👨‍💻 Equipe
-Leonardo Amaral de Souza
-Ingrid Franco de Oliveira
-Vinicius Gabriel Varone
-Danilson Honorato da Silva Junior
-Victor Mendes Ferreira Mello
-Pablo Silva de Jesus Gomes
-Gabriel Strolego Queiroz
-Mauricio Zarpelon Antunes dos Santos
-📄 Licença
 
-Este projeto foi desenvolvido para fins acadêmicos e educacionais.
+# 🎯 Público-Alvo
 
-🌎 Visão do Projeto
+> - Usuários do sistema público de saúde  
+> - Idosos  
+> - Pessoas com dificuldade de locomoção  
+> - Responsáveis por familiares  
+> - Pessoas que desejam praticidade no acesso à saúde pública  
 
-O Saúde Fácil nasce como uma ponte entre tecnologia e dignidade.
-Menos papel. Menos fila. Menos espera.
-Mais acesso. Mais organização. Mais cuidado humano.
+---
 
-Porque saúde pública também merece experiência moderna.
+# 📚 Stakeholders
+
+> - Pacientes e cidadãos  
+> - Profissionais da saúde  
+> - Hospitais e unidades públicas  
+> - Secretarias de saúde  
+> - Equipe de desenvolvimento  
+
+---
+
+# 💡 Diferenciais
+
+> - Centralização das informações em um único aplicativo  
+> - Interface simplificada e acessível  
+> - Redução de filas presenciais  
+> - Gestão de dependentes  
+> - Facilidade de acesso aos serviços públicos  
+
+---
+
+# 👨‍💻 Equipe
+
+> - Leonardo Amaral de Souza  
+> - Ingrid Franco de Oliveira  
+> - Vinicius Gabriel Varone  
+> - Danilson Honorato da Silva Junior  
+> - Victor Mendes Ferreira Mello  
+> - Pablo Silva de Jesus Gomes  
+> - Gabriel Strolego Queiroz  
+> - Mauricio Zarpelon Antunes dos Santos  
+
+---
+
+# 📄 Licença
+
+> Este projeto foi desenvolvido para fins acadêmicos e educacionais.
+
+---
+
+# 🌎 Visão do Projeto
+
+> O Saúde Fácil nasce como uma ponte entre tecnologia e dignidade.  
+> Menos papel. Menos fila. Menos espera.  
+> Mais acesso. Mais organização. Mais cuidado humano.  
+>
+> Porque saúde pública também merece experiência moderna.
+
+---
+
+---
